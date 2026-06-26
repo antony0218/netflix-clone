@@ -1,0 +1,23 @@
+body{
+    margin:0;
+    background:#141414;
+    color:white;
+    font-family:Arial;
+}
+
+header{
+    padding:20px;
+    color:red;
+    font-size:35px;
+    font-weight:bold;
+}
+
+.hero{
+    padding:120px 50px;
+}
+
+button{
+    padding:12px 25px;
+    margin-right:10px;
+    font-size:16px;
+}
