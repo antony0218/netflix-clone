@@ -20,6 +20,12 @@ pipeline {
             }
         }
 
+        stage('Trivy Image Scan') {
+            steps {
+                sh 'trivy image --exit-code 0 --severity HIGH,CRITICAL netflix-app:latest'
+            }
+        }
+
         stage('Login to ECR') {
             steps {
                 sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 300034476295.dkr.ecr.ap-south-1.amazonaws.com'
@@ -37,20 +43,5 @@ pipeline {
                 sh 'docker push 300034476295.dkr.ecr.ap-south-1.amazonaws.com/netflix-app:latest'
             }
         }
-    }
-}
-stage('Trivy Image Scan') {
-    steps {
-        sh '''
-        trivy image \
-        --exit-code 0 \
-        --severity HIGH,CRITICAL \
-        netflix-app:latest
-        '''
-    }
-}
-stage('Trivy Image Scan') {
-    steps {
-        sh 'trivy image --exit-code 0 --severity HIGH,CRITICAL netflix-app:latest'
     }
 }
