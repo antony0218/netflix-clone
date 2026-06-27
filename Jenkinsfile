@@ -49,3 +49,8 @@ stage('Trivy Image Scan') {
         '''
     }
 }
+stage('Trivy Image Scan') {
+    steps {
+        sh 'trivy image --exit-code 0 --severity HIGH,CRITICAL netflix-app:latest'
+    }
+}
