@@ -1,12 +1,7 @@
 pipeline {
     agent any
-    
-    tools {
-           sonarscanner 'SonarScanner'
-          }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -14,10 +9,13 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
+            environment {
+                SCANNER_HOME = tool 'SonarScanner'
+            }
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh '''
-                    sonar-scanner \
+                    ${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=netflix-clone \
                     -Dsonar.projectName=Netflix-Clone \
                     -Dsonar.sources=.
