@@ -16,7 +16,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                     ${SCANNER_HOME}/bin/sonar-scanner \
-                    -Dsonar.projectKey=netflix-clone \
+                    -Dsonar.projectKey=Netflix-Clone \
                     -Dsonar.projectName=Netflix-Clone \
                     -Dsonar.sources=.
                     '''
